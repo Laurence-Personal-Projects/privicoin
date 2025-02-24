@@ -1,0 +1,42 @@
+{
+  "name": "privicoin",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "react-scripts": "5.0.1",
+    "sass": "^1.85.0"
+  },
+  "scripts": {
+    "start": "concurrently \"npm run watch-scss\" \"react-scripts start\"",
+    "build": "npm run build-scss && react-scripts build",
+    "watch-scss": "sass --watch src/assets/sass/index.scss:src/index.css --no-source-map",
+    "build-scss": "sass src/assets/sass/index.scss:src/index.css --no-source-map"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.20",
+    "concurrently": "^9.1.2",
+    "postcss": "^8.5.3",
+    "postcss-loader": "^8.1.1",
+    "tailwindcss": "^4.0.8"
+  }
+}

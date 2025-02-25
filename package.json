@@ -11,25 +11,15 @@
   "scripts": {
     "start": "concurrently \"npm run watch-scss\" \"react-app-rewired start\"",
     "build": "npm run build-scss && react-app-rewired build",
-    "watch-scss": "concurrently \"sass --watch src/assets/sass/index.scss:src/index.css --no-source-map\" \"postcss src/index.css --use autoprefixer cssnano -o src/index.css\"",
-    "build-scss": "sass src/assets/sass/index.scss:src/index.css --no-source-map && postcss src/index.css --use autoprefixer cssnano -o src/index.css"
+    "watch-scss": "concurrently \"sass --watch src/assets/sass/index.scss:src/index.css --no-source-map\" \"npx postcss src/index.css --use autoprefixer cssnano -o src/index.css --watch\"",
+    "build-scss": "concurrently --kill-others-on-fail \"sass src/assets/sass/index.scss:src/index.css --no-source-map\" \"npx postcss src/index.css --use autoprefixer cssnano -o src/index.css\""
   },
   "eslintConfig": {
-    "extends": [
-      "react-app"
-    ]
+    "extends": ["react-app"]
   },
   "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+    "production": [">0.2%", "not dead", "not op_mini all"],
+    "development": ["last 1 chrome version", "last 1 firefox version", "last 1 safari version"]
   },
   "devDependencies": {
     "autoprefixer": "^10.4.20",

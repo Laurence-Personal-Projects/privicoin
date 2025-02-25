@@ -1,9 +1,9 @@
 module.exports = {
-  plugins: {
-    tailwindcss: {},
-    autoprefixer: {},
-    cssnano: {
-      preset: ["default", { discardComments: { removeAll: false } }], // Keeps comments
-    },
-  },
+  plugins: [
+    require("tailwindcss"),
+    require("autoprefixer"),
+    require("cssnano")({
+      preset: "default",
+    }),
+  ],
 };

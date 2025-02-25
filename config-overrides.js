@@ -6,6 +6,5 @@ module.exports = function override(config) {
     "@": path.resolve(__dirname, "src"),
   };
 
-  console.log("Webpack Aliases:", config.resolve.alias); // Debugging output
   return config;
 };

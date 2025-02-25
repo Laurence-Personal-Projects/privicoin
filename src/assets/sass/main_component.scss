@@ -1,8 +1,8 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@use '_reset.scss';
 
-body {margin:0;}
+/*Presets*/
+html {scroll-behavior: smooth;scroll-padding-top:40px;}
+body {margin:0;padding:0;}
 
 .App {text-align: center;}
 .App-logo {height: 40vmin;pointer-events: none;}

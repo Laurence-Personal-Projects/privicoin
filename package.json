@@ -9,15 +9,14 @@
     "sass": "^1.85.0"
   },
   "scripts": {
-    "start": "concurrently \"npm run watch-scss\" \"react-scripts start\"",
-    "build": "npm run build-scss && react-scripts build",
-    "watch-scss": "sass --watch src/assets/sass/index.scss:src/index.css --no-source-map",
-    "build-scss": "sass src/assets/sass/index.scss:src/index.css --no-source-map"
+    "start": "concurrently \"npm run watch-scss\" \"react-app-rewired start\"",
+    "build": "npm run build-scss && react-app-rewired build",
+    "watch-scss": "concurrently \"sass --watch src/assets/sass/index.scss:src/index.css --no-source-map\" \"postcss src/index.css --use autoprefixer cssnano -o src/index.css\"",
+    "build-scss": "sass src/assets/sass/index.scss:src/index.css --no-source-map && postcss src/index.css --use autoprefixer cssnano -o src/index.css"
   },
   "eslintConfig": {
     "extends": [
-      "react-app",
-      "react-app/jest"
+      "react-app"
     ]
   },
   "browserslist": {
@@ -35,8 +34,11 @@
   "devDependencies": {
     "autoprefixer": "^10.4.20",
     "concurrently": "^9.1.2",
+    "cssnano": "^7.0.6",
     "postcss": "^8.5.3",
+    "postcss-cli": "^11.0.0",
     "postcss-loader": "^8.1.1",
+    "react-app-rewired": "^2.2.1",
     "tailwindcss": "^4.0.8"
   }
 }

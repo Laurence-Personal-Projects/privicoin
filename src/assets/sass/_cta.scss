@@ -1,0 +1,13 @@
+@use 'modules/variables' as var;
+@use 'modules/mixins' as mixins;
+
+.cta-box-card, .template-box-card {background: linear-gradient(180deg, var.$darker_color 0%, var.$primary_color 100%);padding:68px;border:1px solid var.$purple_color;border-top-color:transparent;height:556px;
+
+    .cta-card-left {width:47%;
+        h4 {@include mixins.heading_2;font-weight:400;margin-bottom:40px;
+            span {@include mixins.sub_heading;text-transform:uppercase;margin-top:22px;}
+        }
+        p {font-size:var.$font_24;margin-bottom:40px;width:50%;}
+    }
+    .cta-card-right {width:48%;}
+}

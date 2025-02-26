@@ -1,0 +1,4 @@
+@use '../modules/variables' as var;
+
+@mixin heading_2 {line-height:120%;font-size:var.$font_56;}
+@mixin sub_heading {line-height:120%;font-size:var.$font_32;}

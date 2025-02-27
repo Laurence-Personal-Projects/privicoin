@@ -1,16 +1,29 @@
 {
   "files": {
-    "main.css": "/static/css/main.f855e6bc.css",
-    "main.js": "/static/js/main.43e00754.js",
-    "static/js/453.a288f0b8.chunk.js": "/static/js/453.a288f0b8.chunk.js",
-    "static/media/logo.svg": "/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
+    "main.css": "/static/css/main.69980edd.css",
+    "main.js": "/static/js/main.0fa011e9.js",
+    "static/media/fa-solid-900.ttf": "/static/media/fa-solid-900.2582b0e4bcf85eceead0.ttf",
+    "static/media/fa-brands-400.ttf": "/static/media/fa-brands-400.1815e00441357e01619e.ttf",
+    "static/media/fa-solid-900.woff2": "/static/media/fa-solid-900.2463b90d9a316e4e5294.woff2",
+    "static/media/fa-brands-400.woff2": "/static/media/fa-brands-400.c210719e60948b211a12.woff2",
+    "static/media/privicoin-mid-img-2-@2x.webp": "/static/media/privicoin-mid-img-2-@2x.85eedca9794be043c9cf.webp",
+    "static/media/bnr-main-coin-@2x.webp": "/static/media/bnr-main-coin-@2x.a0c134125a39921cd71c.webp",
+    "static/media/privicoin-mid-img-1-@2x.webp": "/static/media/privicoin-mid-img-1-@2x.ea8f703e6a565f0d4904.webp",
+    "static/media/fa-regular-400.ttf": "/static/media/fa-regular-400.914997e1bdfc990d0897.ttf",
+    "static/media/bnr-coin-3-@2x.webp": "/static/media/bnr-coin-3-@2x.fa9773f76c660eb35333.webp",
+    "static/media/bnr-coin-1-@2x.webp": "/static/media/bnr-coin-1-@2x.e6c2b0b14b2b7275a174.webp",
+    "static/media/bnr-coin-2-@2x.webp": "/static/media/bnr-coin-2-@2x.b300c504f25f640d38cb.webp",
+    "static/media/fa-regular-400.woff2": "/static/media/fa-regular-400.89999bdf5d835c012025.woff2",
+    "static/media/fa-v4compatibility.ttf": "/static/media/fa-v4compatibility.da94ef451f4969af06e6.ttf",
+    "static/media/privicoin-icon-@2x.webp": "/static/media/privicoin-icon-@2x.68ef36b28689cafb741d.webp",
+    "static/media/privicoin-logo-@2x.webp": "/static/media/privicoin-logo-@2x.efb2ef851d5fcea321f9.webp",
+    "static/media/fa-v4compatibility.woff2": "/static/media/fa-v4compatibility.ea8f94e1d22e0d35ccd4.woff2",
     "index.html": "/index.html",
-    "main.f855e6bc.css.map": "/static/css/main.f855e6bc.css.map",
-    "main.43e00754.js.map": "/static/js/main.43e00754.js.map",
-    "453.a288f0b8.chunk.js.map": "/static/js/453.a288f0b8.chunk.js.map"
+    "main.69980edd.css.map": "/static/css/main.69980edd.css.map",
+    "main.0fa011e9.js.map": "/static/js/main.0fa011e9.js.map"
   },
   "entrypoints": [
-    "static/css/main.f855e6bc.css",
-    "static/js/main.43e00754.js"
+    "static/css/main.69980edd.css",
+    "static/js/main.0fa011e9.js"
   ]
 }

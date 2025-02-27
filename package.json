@@ -4,6 +4,8 @@
   "private": true,
   "dependencies": {
     "@fortawesome/fontawesome-free": "^6.7.2",
+    "animate.css": "^4.1.1",
+    "jquery": "^3.7.1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-scripts": "5.0.1",
@@ -12,7 +14,7 @@
   "scripts": {
     "start": "concurrently \"npm run watch-scss\" \"react-app-rewired start\"",
     "build": "npm run build-scss && react-app-rewired build",
-    "watch-scss": "concurrently \"sass --watch src/assets/sass/index.scss:src/index.css --no-source-map\" \"npx postcss src/index.css --use autoprefixer cssnano -o src/index.css --watch\"",
+    "watch-scss": "concurrently \"sass --watch src/assets/sass/index.scss:src/index.css --no-source-map\" \"npx postcss src/index.css --use autoprefixer cssnano -o src/index.css --no-source-map --no-map --watch\"",
     "build-scss": "concurrently --kill-others-on-fail \"sass src/assets/sass/index.scss:src/index.css --no-source-map\" \"npx postcss src/index.css --use autoprefixer cssnano -o src/index.css\""
   },
   "eslintConfig": {

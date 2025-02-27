@@ -2,22 +2,109 @@
 @use 'modules/mixins' as mixins;
 
 @media only screen and (max-width:1440px) {
-    /*CTA CARD*/
-    .cta-box-card {height:auto;}
+  /*Header*/
+  .main-header {padding:24px;}
+
+  /*CTA CARD*/
+  .cta-box-card {height:auto;}
 
 }
 
+@media only screen and (max-width:1024px) {
+  /*Banner*/
+  .banner-main {
+    .banner-info {max-width:500px;line-height:110%;}
+  }
+
+  /*Banner Animations*/
+  .bnr-topleft-coin {
+      left:12%;top:10%;
+    .bnr-top-1-coin {width:150px;}
+  }
+
+  .bnr-topright-coin {
+      right:8%;top:10%;
+    .bnr-top-2-coin {width:150px;}
+  }
+
+  .bnr-center-coin {
+    .bnr-main-coin {width:500px;}
+  }
+
+  .bnr-bottom-coin {
+      right:5%;bottom:10%;
+    .bnr-btm-coin {width:200px;}
+  }
+  /*Banner*/
+}
+
 @media only screen and (max-width:767px) {
-    /*CTA CARD*/
-    .cta-box-card {
-        padding:40px 24px;
-        .cta-card-left {
-            width:100%;
-            h4 {font-size:var.$font_32;
-                span {font-size:var.$font_24;margin-top:16px;}
-            }
-            p {font-size:var.$font_16;width:100%;}
-        }
-        .cta-card-right {width:100%;}
+  /*Banner*/
+  .banner-main {min-height:800px;
+    .banner-info {top:50%;max-width:375px;
+      h4 {max-width:320px;margin-bottom:24px;}
+      p {margin-bottom:24px;}
     }
+  }
+
+  /*Banner Animations*/
+  .bnr-topleft-coin {
+      left:15%;top:10%;
+      .bnr-top-1-coin {width:120px;}
+  }
+
+  .bnr-topright-coin {
+      right:10%;top:10%;
+      .bnr-top-2-coin {width:120px;}
+  }
+
+  .bnr-center-coin {
+      .bnr-main-coin {width:320px;}
+  }
+
+  .bnr-bottom-coin {
+      right:12%;bottom:10%;
+      .bnr-btm-coin {width:136px;}
+  }
+  /*Banner*/
+
+  /*CTA CARD*/
+  .cta-box-card {
+    padding:40px 24px;
+    .cta-card-left {
+      width:100%;
+      h4 {font-size:var.$font_32;
+        span {font-size:var.$font_24;margin-top:16px;}
+      }
+      p {font-size:var.$font_16;width:100%;}
+    }
+    .cta-card-right {width:100%;}
+  }
+}
+
+@media only screen and (max-width:480px) {
+  /*Banner*/
+  .banner-main {min-height:650px;
+  }
+
+  /*Banner Animations*/
+  .bnr-topleft-coin {
+      position:absolute;left:15%;top:10%;
+      .bnr-top-1-coin {width:100px;}
+  }
+
+  .bnr-topright-coin {
+      position:absolute;right:10%;top:10%;
+      .bnr-top-2-coin {width:100px;}
+  }
+
+  .bnr-center-coin {
+      .bnr-main-coin {width:350px;}
+  }
+
+  .bnr-bottom-coin {
+      position:absolute;right:12%;bottom:15%;z-index:5;
+      .bnr-btm-coin {width:80px;}
+  }
+  /*Banner*/
 }

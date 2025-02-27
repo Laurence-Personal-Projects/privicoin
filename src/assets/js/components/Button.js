@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 // FontAwesome Icons
 import "@fortawesome/fontawesome-free/css/all.min.css";
 
-const Button = ({ title, className, href, hasIcon, targetBlank }) => (
+const Button = ({ title = "", className = "", href = "#", hasIcon = false, targetBlank = false }) => (
   <a
     href={href ? href : '#'} // default is `#`
     {...(targetBlank ? { target: "_blank" } : {})} //if true add targetBlank
@@ -20,15 +20,6 @@ Button.propTypes = {
   className: PropTypes.string,
   href: PropTypes.string,
   hasIcon: PropTypes.bool,
-};
-
-// Default Props
-Button.defaultProps = {
-  title: "",
-  className: "",
-  href: "#",
-  hasIcon: false,
-  targetBlank: false,
 };
 
 export default Button;

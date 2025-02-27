@@ -7,8 +7,8 @@ import Button from "@/assets/js/components/Button";
 import BoxCard from "@/assets/js/components/BoxCard";
 
 //sections
+import HomeBanner from "@/assets/js/components/home/HomeBanner";
 import HomeMiddleMainSection from "@/assets/js/components/home/HomeMiddleMainSection";
-
 
 const App = () => {
   useEffect(() => {
@@ -32,6 +32,9 @@ const App = () => {
     <div className="App">
       <Header />
 
+      {/* Banner Section */}
+      <HomeBanner />
+
       {/* Middle Section */}
       <HomeMiddleMainSection />
 
@@ -48,7 +51,7 @@ const App = () => {
                 <p>Leverage collective wisdom for profitable decisions.</p>
                 <Button
                   title="Start Now"
-                  className="cta-btn tw-max-w-full tw-w-[160px] tw-pr-[40px] md:tw-w-[230px] md:tw-pr-[34px]"
+                  className="cta-btn tw-max-w-full tw-w-[160px] tw-pr-[40px] md:tw-w-[220px] md:tw-pr-[34px]"
                   hasIcon={true}
                 />
               </div>

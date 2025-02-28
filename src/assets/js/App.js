@@ -9,6 +9,7 @@ import BoxCard from "@/assets/js/components/BoxCard";
 //sections
 import HomeBanner from "@/assets/js/components/home/HomeBanner";
 import HomeMiddleMainSection from "@/assets/js/components/home/HomeMiddleMainSection";
+import HomeBottomMainSection from "@/assets/js/components/home/HomeBottomMainSection";
 
 const App = () => {
   useEffect(() => {
@@ -37,6 +38,9 @@ const App = () => {
 
       {/* Middle Section */}
       <HomeMiddleMainSection />
+
+      {/* Bottom Section */}
+      <HomeBottomMainSection />
 
       {/* CTA Section */}
       <div className="main-cta-section tw-px-[24px] tw-pb-[60px] md:tw-pb-[120px] lg:tw-pb-[240px]">

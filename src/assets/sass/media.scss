@@ -11,6 +11,8 @@
 }
 
 @media only screen and (max-width:1024px) {
+  /*Header*/
+  .header-logo {width:120px !important;}
   /*Banner*/
   .banner-main {
     .banner-info {max-width:500px;line-height:110%;}
@@ -40,6 +42,13 @@
   /*Middle*/
   .home-middle-center-section {margin-top:0;padding-top:0 !important;}
   .mid-center-coin {width:400px;}
+
+  /*Bottom*/
+  .road-map-faq-box {
+    margin-bottom:80px;
+    h4 {font-size:var.$font_32;}
+    .road-map-list {font-size:var.$font_18;margin-top:40px;}
+  }
 }
 
 @media only screen and (max-width:767px) {
@@ -87,6 +96,12 @@
     }
     .cta-card-right {width:100%;}
   }
+
+    /*Bottom*/
+    .road-map-faq-box {
+      margin-bottom:60px;
+      h4 {font-size:var.$font_24;}
+    }
 }
 
 @media only screen and (max-width:480px) {

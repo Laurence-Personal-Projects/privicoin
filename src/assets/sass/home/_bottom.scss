@@ -1,0 +1,17 @@
+
+@use '../modules/variables' as var;
+
+.home-bottom-main-section {background: url("/src/assets/images/home/bottom-section-bg-@2x.webp") no-repeat center bottom / cover;background-attachment: scroll;}
+
+/*Road Map*/
+.road-map-box {
+  .progress-bar {position: absolute;left: 0;top: 0;height:0%;width: 4px;background-color:var.$purple_color;border-radius:4px;transition: height 0.2s ease-out;z-index:2;}
+  .progress-outline {width:4px;height:100%;position:absolute;left:0;top:0;background:rgba(255,255,255,0.3);border-radius:4px}
+}
+.road-map-faq-box {
+  margin-bottom:150px;
+  h4 {color:var.$purple_color;font-size:var.$font_40;}
+  .road-map-list {font-size:var.$font_24;list-style:disc;margin-top:50px;padding-left:28px;
+    li {margin-bottom:8px;}
+  }
+}

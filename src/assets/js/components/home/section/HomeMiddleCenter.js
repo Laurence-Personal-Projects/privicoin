@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 import PropTypes from "prop-types";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -25,7 +25,7 @@ const HomeMiddleCenter = ({ invert = false, title = "", boxCardInfo = [], imageO
       const cards = gsap.utils.toArray(".how-it-works-card");
       if (!cards.length) return;
 
-      let stickDistance = 0;
+      let stickDistance = 50;
       let lastCardST = ScrollTrigger.create({
         trigger: cards[cards.length - 1],
         start: "center center",
@@ -60,9 +60,9 @@ const HomeMiddleCenter = ({ invert = false, title = "", boxCardInfo = [], imageO
         scrub: true,
         onUpdate: (self) => {
           gsap.to(coinImageRef.current, {
-            // if invert = true 0 to -100 degrees
-            // otherwise 0 to 100 degrees
-            rotation: invert ? -(self.progress * 100) : self.progress * 100,
+            // if invert = true 0 to -180 degrees
+            // otherwise 0 to 180 degrees
+            rotation: invert ? -(self.progress * 180) : self.progress * 180,
             transformOrigin: "50% 50%", // Ensures smooth rotation around the center
             ease: "none",
           });
@@ -87,7 +87,6 @@ const HomeMiddleCenter = ({ invert = false, title = "", boxCardInfo = [], imageO
     <div ref={sectionRef} className="tw-py-[40px] md:tw-py-[60px] tw-px-[24px]">
       <div className="wrapper">
         <div className="tw-flex tw-flex-wrap tw-justify-between tw-items-start">
-
           {/*Content Section*/}
           <div ref={holderRef} className={`home-middle-center-holder tw-text-left tw-w-full md:tw-w-[45%] ${invert ? orderDiv.current : ''}`}>
             <h2 ref={titleRef} className="tw-text-[32px] tw-mb-[24px] md:tw-mb-[50px] md:tw-text-[56px]">

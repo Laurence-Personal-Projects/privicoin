@@ -18,7 +18,7 @@ const boxCardInfo2 = [
     { title: "Diversified Portfolio", text: "Reduce risk by funding multiple vetted projects." },
     { title: "Automated Profit Redistribution", text: "Earn passive income as profits are shared among members." },
     { title: "Sustainable Growth", text: "Continuous voting and funding cycles provide ongoing opportunities." },
-  ];
+];
 
 const HomeMiddleMainSection = () => {
     return (

@@ -63,7 +63,7 @@ const RoadMapSection = () => {
   }, []);
 
   return (
-    <div ref={roadMapRef} className="road-map-main-section tw-text-left tw-py-[120px] tw-pb-[40px] tw-px-[24px] md:tw-pt-[250px] md:tw-pb-[300px]">
+    <div ref={roadMapRef} className="road-map-main-section tw-text-left tw-py-[120px] tw-pb-[40px] tw-px-[24px] md:tw-pt-[250px] md:tw-pb-[80px]">
       <div className="wrapper">
         <div className="road-map-box tw-pl-[32px] md:tw-pl-[60px] lg:tw-pl-[105px] tw-relative">
           {/* Progress Bar */}

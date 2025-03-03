@@ -3,13 +3,12 @@ import LogoFavIcon from "@/assets/images/privicoin-icon-@2x.webp";
 
 //components
 import Header from "@/assets/js/components/Header";
-import Button from "@/assets/js/components/Button";
-import BoxCard from "@/assets/js/components/BoxCard";
 
 //sections
 import HomeBanner from "@/assets/js/components/home/HomeBanner";
 import HomeMiddleMainSection from "@/assets/js/components/home/HomeMiddleMainSection";
 import HomeBottomMainSection from "@/assets/js/components/home/HomeBottomMainSection";
+import CtaCard from "@/assets/js/components/CtaCard";
 
 const App = () => {
   useEffect(() => {
@@ -43,26 +42,7 @@ const App = () => {
       <HomeBottomMainSection />
 
       {/* CTA Section */}
-      <div className="main-cta-section tw-px-[24px] tw-pb-[60px] md:tw-pb-[120px] lg:tw-pb-[240px]">
-        <div className="wrapper">
-          <BoxCard className="cta-box-card tw-text-left">
-            <div className="tw-flex tw-flex-wrap tw-flex-between">
-              <div className="cta-card-left">
-                <h4>
-                  Join the Future of Community-Driven Rewards
-                  <span className="tw-block">Community Meets Capital Growth</span>
-                </h4>
-                <p>Leverage collective wisdom for profitable decisions.</p>
-                <Button
-                  title="Start Now"
-                  className="cta-btn tw-max-w-full tw-w-[160px] tw-pr-[40px] md:tw-w-[220px] md:tw-pr-[34px]"
-                  hasIcon={true}
-                />
-              </div>
-            </div>
-          </BoxCard>
-        </div>
-      </div>
+      <CtaCard></CtaCard>
     </div>
   );
 };

@@ -10,7 +10,7 @@ const BannerInfo = () => {
             <span className="highlighted-text">Rewards <span>&nbsp;Platform</span></span>
             </div>
         </h4>
-        <p className="tw-text-[16px] md:tw-text-[24px]">Join an exclusive DeFI community where we collectively decide which DeFi projects to fund. PRIVI empowers members to make collective decisions to diversify risk and maximize potential returns</p>
+        <p className="tw-text-[16px] md:tw-text-[24px]">Join an exclusive DeFI community where we succeed together. PRIVI empowers members to make collective decisions to diversify risk and maximize returns.</p>
         <Button title="Learn Now" className="cta-btn tw-max-w-full tw-w-[160px] tw-pr-[40px] md:tw-w-[220px] md:tw-pr-[34px]" hasIcon={true} />
       </div>
     </div>

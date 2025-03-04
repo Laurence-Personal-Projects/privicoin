@@ -12,7 +12,7 @@
     .cta-card-right {width:48%;}
 }
 
-.cta-coin {animation: rotateYCoin 4s ease-in-out infinite alternate;}
+.cta-coin {animation: upDownCoin 4s ease-in-out infinite alternate;}
 
 @keyframes rotateYCoin {
     0% {
@@ -20,5 +20,14 @@
     }
     100% {
         transform:rotateY(-35deg);
+    }
+}
+
+@keyframes upDownCoin {
+    0% {
+        transform:translateY(-3%);
+    }
+    100% {
+        transform:translateY(3%);
     }
 }

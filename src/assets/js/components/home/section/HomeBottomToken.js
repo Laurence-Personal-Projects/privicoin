@@ -71,7 +71,7 @@ const HomeBottomToken = () => {
   return (
     <div ref={sectionRef} className="token-main-card tw-w-full tw-relative tw-px-[24px]">
       <div
-        className="tw-w-full tw-max-w-[725px] tw-m-auto tw-flex tw-flex-wrap tw-flex-col tw-items-center tw-justify-center tw-relative tw-min-h-[60vh] md:tw-min-h-[700px] lg:tw-min-h-[85vh] tw-mt-[80px] md:tw-mt-[0px]"
+        className="tw-w-full tw-max-w-[725px] tw-m-auto tw-flex tw-flex-wrap tw-flex-col tw-items-center tw-justify-center tw-relative tw-min-h-[450px] md:tw-min-h-[600px] lg:tw-min-h-[75vh] tw-mt-[80px] md:tw-mt-[0px]"
       >
         {tokenInfo.map((item, index) => (
           <BoxCard
@@ -79,7 +79,7 @@ const HomeBottomToken = () => {
             className="token-card template-box-card tw-w-full tw-h-full tw-py-[40px] tw-px-[24px] md:tw-p-[80px] lg:tw-p-[85px] tw-flex tw-items-start tw-justify-between tw-flex-col tw-absolute tw-top-0 tw-left-0 tw-right-0 tw-transition tw-duration-100 tw-ease-in-out"
             ref={(el) => (cardsRef.current[index] = el)}
           >
-            <img src={item.image} className="tw-w-[320px] lg:tw-w-[421px] tw-max-w-full tw-mx-auto" alt="Token" />
+            <img src={item.image} className="tw-w-[250px] lg:tw-w-[421px] tw-max-w-full tw-mx-auto tw-mb-[24px]" alt="Token" />
             <h4 className="tw-w-full tw-text-[24px] md:tw-text-[40px] tw-text-center">{item.title}</h4>
           </BoxCard>
         ))}

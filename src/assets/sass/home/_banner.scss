@@ -38,10 +38,10 @@
 /*Animation Keyframes*/
 @keyframes rotateYAnimation {
     0% {
-        transform:rotateY(-30deg);
+        transform:translateX(-5%);
     }
     100% {
-        transform:rotateY(30deg);
+        transform:translateX(5%);
     }
 }
 

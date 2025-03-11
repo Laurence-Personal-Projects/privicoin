@@ -119,11 +119,18 @@
     }
   }
 
-    /*Bottom*/
-    .road-map-faq-box {
-      margin-bottom:60px;
-      h4 {font-size:var.$font_24;}
+  /*Bottom*/
+  .road-map-faq-box {
+    margin-bottom:60px;
+    h4 {font-size:var.$font_24;}
+  }
+
+  /*Dashboard*/
+  .dashboard-nav-links {
+    li {
+      a {padding:14px 24px;font-size:var.$font_14;}
     }
+  }
 }
 
 @media only screen and (max-width:480px) {

@@ -3,14 +3,12 @@
 /*Dashboard Sidebar*/
 .main-sidebar {
   transition:all 0.3s ease-in-out;
-  &.active-main-sidebar {margin-left:-275px;}
+  &.active-main-sidebar {margin-left:-265px;}
 }
 
 .dashboard-mobile-menu {display:none !important;}
 
 .dashboard-sidebar-nav {background: linear-gradient(180deg, var.$darker_color 0%, var.$primary_color 100%);border: 1px solid var.$dark1_color;border-radius: 32px;min-height:87vh;}
-
-// .dashboard-mobile-menu {display:none !important;}
 
 .dashboard-nav-links {
   li {width:100%;

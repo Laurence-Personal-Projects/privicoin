@@ -18,7 +18,7 @@ const DashboardLinks = () => {
               end
               className={({ isActive }) => isActive ? "active-link" : "tw-text-white"}
             >
-              <img src={IconDashboard} className="tw-w-[22px] tw-h-[22px]" alt="Dashboard" /> Dashboard
+              <img src={IconDashboard} className="tw-w-[16px] tw-h-[16px] md:tw-w-[22px] md:tw-h-[22px]" alt="Dashboard" /> Dashboard
             </NavLink>
           </li>
           <li>
@@ -26,7 +26,7 @@ const DashboardLinks = () => {
               to="/dashboard/projects"
               className={({ isActive }) => isActive ? "active-link" : "tw-text-white"}
             >
-              <img src={IconProjects} className="tw-w-[22px] tw-h-[22px]" alt="Projects" /> Projects
+              <img src={IconProjects} className="tw-w-[16px] tw-h-[16px] md:tw-w-[22px] md:tw-h-[22px]" alt="Projects" /> Projects
             </NavLink>
           </li>
           <li>
@@ -34,7 +34,7 @@ const DashboardLinks = () => {
               to="/dashboard/nfts"
               className={({ isActive }) => isActive ? "active-link" : "tw-text-white"}
             >
-              <img src={IconNFTs} className="tw-w-[22px] tw-h-[22px]" alt="NFTs" /> NFTs
+              <img src={IconNFTs} className="tw-w-[16px] tw-h-[16px] md:tw-w-[22px] md:tw-h-[22px]" alt="NFTs" /> NFTs
             </NavLink>
           </li>
           <li>
@@ -42,7 +42,7 @@ const DashboardLinks = () => {
               to="/dashboard/rewards"
               className={({ isActive }) => isActive ? "active-link" : "tw-text-white"}
             >
-              <img src={IconRewards} className="tw-w-[22px] tw-h-[22px]" alt="Rewards" /> Rewards
+              <img src={IconRewards} className="tw-w-[16px] tw-h-[16px] md:tw-w-[22px] md:tw-h-[22px]" alt="Rewards" /> Rewards
             </NavLink>
           </li>
           <li>
@@ -50,7 +50,7 @@ const DashboardLinks = () => {
               to="/dashboard/documentation"
               className={({ isActive }) => isActive ? "active-link" : "tw-text-white"}
             >
-              <img src={IconDocumentation} className="tw-w-[22px] tw-h-[22px]" alt="Documentation" /> Documentation
+              <img src={IconDocumentation} className="tw-w-[16px] tw-h-[16px] md:tw-w-[22px] md:tw-h-[22px]" alt="Documentation" /> Documentation
             </NavLink>
           </li>
         </ul>

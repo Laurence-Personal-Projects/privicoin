@@ -3,6 +3,7 @@
 @use '_fonts.scss';
 @use '_header.scss';
 @use './home/_home.scss';
+@use './dashboard/_dashboard.scss';
 @use 'media.scss';
 
 /*Presets*/
@@ -11,6 +12,16 @@ body {margin:0;padding:0;background:var.$primary_color;}
 .wrapper {width:100%;max-width:1550px;margin:0 auto;padding:0;position: relative;}
 h1,h2,h3,h4,h5,h6,span,p,ul,li,a,button,small,div {font-family:var.$font_inter;color:var.$text_white_color;line-height:120%;}
 img {vertical-align:top;image-rendering:-webkit-optimized-contrast;}
+
+.dashboard-box-card {background: linear-gradient(0deg, var.$dark2_color, var.$dark2_color);border: 1px solid var.$dark1_color;border-radius:26px;}
+
+.dashboard-btn {padding:9px 26px;font-size:var.$font_16;height:42px;border-radius:24px;background: linear-gradient(90deg, var.$purple_color 0%, var.$dark_purple_color 100%);display:flex;align-items:center;justify-content:center;position:relative;text-align:center;transition:all 0.3s linear;
+  &::before {content: "";position: absolute;inset: 0;padding: 1px;border-radius: 24px;background: linear-gradient(to right, var.$purple_color 0%, var.$text_white_color 100%);-webkit-mask: linear-gradient(white 0 0) content-box, linear-gradient(white 0 0);-webkit-mask-composite: destination-out;mask-composite: exclude;}
+
+  &:hover {background:var.$pink_color;}
+
+  .arrow-icon {position:absolute;right:24px;top:50%;transform:translateY(-50%);}
+}
 
 .cta-btn {padding:9px 26px;font-size:var.$font_16;height:42px;border-radius:24px;background: linear-gradient(90deg, var.$purple_color 0%, var.$other_dark_color 100%);display:flex;align-items:center;justify-content:center;position:relative;text-align:center;transition:all 0.3s linear;
   &::before {content: "";position: absolute;inset: 0;padding: 1px;border-radius: 24px;background: linear-gradient(to right, var.$purple_color 0%, var.$purple_color 100%);-webkit-mask: linear-gradient(white 0 0) content-box, linear-gradient(white 0 0);-webkit-mask-composite: destination-out;mask-composite: exclude;}

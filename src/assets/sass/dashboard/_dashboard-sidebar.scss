@@ -1,0 +1,22 @@
+@use '../modules/variables' as var;
+
+/*Dashboard Sidebar*/
+.main-sidebar {
+  transition:all 0.3s ease-in-out;
+  &.active-main-sidebar {margin-left:-275px;}
+}
+
+.dashboard-mobile-menu {display:none !important;}
+
+.dashboard-sidebar-nav {background: linear-gradient(180deg, var.$darker_color 0%, var.$primary_color 100%);border: 1px solid var.$dark1_color;border-radius: 32px;min-height:87vh;}
+
+// .dashboard-mobile-menu {display:none !important;}
+
+.dashboard-nav-links {
+  li {width:100%;
+    a {
+      padding:20px 33px;display:flex;align-items:center;color:var.$text_white_color;gap:12px;
+      &.active-link {background: linear-gradient(90deg, var.$purple_color 0%, var.$other_dark_color 100%);}
+    }
+  }
+}

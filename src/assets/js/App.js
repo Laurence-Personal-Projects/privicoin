@@ -2,13 +2,7 @@ import { useEffect } from "react";
 import LogoFavIcon from "@/assets/images/privicoin-icon-@2x.webp";
 
 //components
-import Header from "@/assets/js/components/Header";
-
-//sections
-import HomeBanner from "@/assets/js/components/home/HomeBanner";
-import HomeMiddleMainSection from "@/assets/js/components/home/HomeMiddleMainSection";
-import HomeBottomMainSection from "@/assets/js/components/home/HomeBottomMainSection";
-import CtaCard from "@/assets/js/components/CtaCard";
+import HomePage from "@/assets/js/components/pages/HomePage";
 
 const App = () => {
   useEffect(() => {
@@ -30,19 +24,8 @@ const App = () => {
 
   return (
     <div className="App">
-      <Header />
-
-      {/* Banner Section */}
-      <HomeBanner />
-
-      {/* Middle Section */}
-      <HomeMiddleMainSection />
-
-      {/* Bottom Section */}
-      <HomeBottomMainSection />
-
-      {/* CTA Section */}
-      <CtaCard></CtaCard>
+      {/* Home Page */}
+      <HomePage />
     </div>
   );
 };

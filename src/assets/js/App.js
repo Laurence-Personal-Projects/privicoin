@@ -1,10 +1,16 @@
+import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
 import { useEffect } from "react";
 import LogoFavIcon from "@/assets/images/privicoin-icon-@2x.webp";
 
-//components
-import HomePage from "@/assets/js/components/pages/HomePage";
+// Components
+import HomePage from "@/assets/js/pages/HomePage";
 
-const App = () => {
+// Dashboard Components
+import Dashboard from "@/assets/js/pages/dashboard/Dashboard";
+
+const AppSetup = () => {
+  const location = useLocation(); // Get the current URL path
+
   useEffect(() => {
     document.title = "Privicoin";
 
@@ -24,9 +30,22 @@ const App = () => {
 
   return (
     <div className="App">
-      {/* Home Page */}
-      <HomePage />
+      {/* Render HomePage only on "/" */}
+      {location.pathname === "/" && <HomePage />}
+
+      {/* Routes for Dashboard pages */}
+      <Routes>
+        <Route path="/dashboard/*" element={<Dashboard />} />
+      </Routes>
     </div>
+  );
+};
+
+const App = () => {
+  return (
+    <Router>
+      <AppSetup />
+    </Router>
   );
 };
 

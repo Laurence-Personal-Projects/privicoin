@@ -11,7 +11,7 @@ const BannerInfo = () => {
             </div>
         </h4>
         <p className="tw-text-[16px] md:tw-text-[24px]">Join an exclusive DeFI community where we succeed together. PRIVI empowers members to make collective decisions to diversify risk and maximize returns.</p>
-        <Button title="Learn Now" className="cta-btn tw-max-w-full tw-w-[160px] tw-pr-[40px] md:tw-w-[220px] md:tw-pr-[34px]" hasIcon={true} />
+        <Button title="Learn Now" href="/dashboard" className="cta-btn tw-max-w-full tw-w-[160px] tw-pr-[40px] md:tw-w-[220px] md:tw-pr-[34px]" hasIcon={true} />
       </div>
     </div>
   );

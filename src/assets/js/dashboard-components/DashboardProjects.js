@@ -1,6 +1,14 @@
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import SearchInput from "@/assets/js/components/core/form/SearchInput";
 import SelectDropdown from "@/assets/js/components/core/form/SelectDropdown";
+
+//core components
+import Tabs from "@/assets/js/components/core/tabs/Tabs";
+import DataCards from "@/assets/js/components/core/cards/DataCards";
+import DataTable from "@/assets/js/components/core/table/DataTable";
+
+//api import
+import { fetchProjects } from "@/assets/js/services/FetchProjectsServices";
 
 const DashboardProjects = () => {
 
@@ -59,22 +67,101 @@ const DashboardProjects = () => {
   };
 
   /*** END >> Function Methods ***/
+
+  /*Tabs - Config*/
+  const activeTab = useRef(null);
+  /*End>> Tabs - Config*/
+
+  // State to hold fetched data
+  const [dataItems, setDataItems] = useState([]);
+
+  //formatter function for large Numbers
+  const formatterNumber = (num) => {
+    if (Number.isInteger(num)) {
+      return num.toLocaleString(); // if whole number dont include 2 decimal places
+    }
+    return (num ?? 0).toLocaleString(undefined, {
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
+    });
+  };
+
+  // Function - Fetch data using Axios
+  const fetchData = async () => {
+    try {
+      const [response, errorMessage] = await fetchProjects();
+      
+      if (response && response.data) {
+        const apiData = response.data; // fetch response data
+
+        // Map API data to match map data in the component
+        const formattedData = apiData.map((item) => ({
+          name: item.name,
+          rank: item.market_cap_rank ?? 0,
+          totalVotes: item.market_cap ? `${formatterNumber(item.market_cap)}M` : "0M",
+          votePercentage: item.atl ?? 0,
+          description: item.description ?? "Automated market maker (AMM) for stable asset swaps with concentrated liquidity positions",
+          apr: formatterNumber(item.atl_change_percentage) ?? 0,
+          rewards: item.current_price ? item.current_price.toLocaleString() : "0",
+          myVote: formatterNumber(item.ath) ?? 0,
+        }));
+
+        setDataItems(formattedData); // Update state with formatted data
+      }
+
+      //get the error message
+      if (errorMessage) {
+        console.log('Error Data', errorMessage);
+      }
+
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchData(); // Fetch data on component mount
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   
   return (
-     <div className="tw-flex tw-gap-[15px] tw-items-center tw-justify-end">
-        {/* Use filterData.current.sortOptions.key as key */}
-        <SelectDropdown 
-          key={filterData.current.sortOptions.key}
-          simple={true} 
-          placeholder="Select a sort"
-          onSelect={handleSortSelect}
-          options={selectOptions} 
-          additionalClass="tw-min-w-[170px] tw-h-[48px]" 
-        />
-        {/* Attach ref to SearchInput */}
-        <SearchInput ref={filterData.current.search} placeholder="Search Project" onSearch={handleSearch} />
-        <button type="button" onClick={clearFilters}>Clear</button>
-      </div>
+    <div className="tw-w-full">
+        <div className="tw-flex tw-gap-[15px] tw-justify-end tw-flex-col">
+          <div className="tw-flex tw-gap-[15px] tw-items-center tw-justify-end">
+            {/* Use filterData.current.sortOptions.key as key */}
+            <SelectDropdown 
+              key={filterData.current.sortOptions.key}
+              simple={true} 
+              placeholder="Select a sort"
+              onSelect={handleSortSelect}
+              options={selectOptions} 
+              additionalClass="tw-min-w-[170px] tw-h-[48px]" 
+            />
+            {/* Attach ref to SearchInput */}
+            <SearchInput ref={filterData.current.search} placeholder="Search Project" onSearch={handleSearch} />
+          </div>
+          <div className="tw-flex tw-justify-end">
+            <button type="button" onClick={clearFilters}>Clear</button>
+          </div>
+        </div>
+
+        <div className="tw-w-full">
+          <Tabs
+            ref={activeTab}
+            tabs={[
+              { name: "dataCard", label: "Data Cards", icon: "fa-solid fa-grip" },
+              { name: "dataTable", label: "Data Table", icon: "fa-solid fa-list" },
+            ]}
+            mainTitle="Projects"
+            hasIcon={true}
+            addtionalTopClass="tw-mt-[20px] xl:tw-mt-[-82px] tw-py-[3px]"
+            addtionalContentClass="tw-mt-[60px]"
+          >
+            <DataCards id="dataCard" dataItems={dataItems} />
+            <DataTable id="dataTable" />
+          </Tabs>
+        </div>
+    </div>
   );
 }
 

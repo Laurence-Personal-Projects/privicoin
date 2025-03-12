@@ -59,7 +59,7 @@ const SelectDropdown = ({
 
       {/* Dropdown Menu */}
       {isOpen && (
-        <ul className="tw-border tw-border-[#4D4D4D] tw-border-solid tw-rounded-md tw-text-left tw-flex tw-flex-col tw-top-full tw-absolute tw-w-full tw-mt-2 tw-z-[20]">
+        <ul className="tw-border tw-border-[#4D4D4D] tw-border-solid tw-rounded-md tw-text-left tw-flex tw-flex-col tw-top-full tw-absolute tw-w-full tw-mt-2 tw-z-[20] tw-bg-black">
           {options.map((option) => (
             <li
               key={option.id}

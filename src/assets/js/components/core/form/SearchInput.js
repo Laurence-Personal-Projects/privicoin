@@ -1,8 +1,8 @@
-import { useRef } from "react";
+import { useRef, forwardRef } from "react";
 import PropTypes from "prop-types";
 
-const SearchInput = ({ placeholder = "", onSearch, hasSearchButton = true, disabled = false, additionalClassName = "", additionalParentClassName = ""  }) => {
-  const inputRef = useRef(null); // Ref for input field
+const SearchInput = forwardRef(({ placeholder = "", onSearch, hasSearchButton = true, disabled = false, additionalClassName = "", additionalParentClassName = "" }, ref) => {
+  const inputRef = useRef(null); // Local ref for input field
 
   const handleSearch = (e) => {
     if (e.key === "Enter" || e.type === "click") {
@@ -17,7 +17,11 @@ const SearchInput = ({ placeholder = "", onSearch, hasSearchButton = true, disab
     <div className={`${disabled ? "tw-cursor-not-allowed" : ""} tw-rounded-full tw-flex tw-items-center tw-border tw-border-solid tw-border-[#4D4D4D] tw-py-[7px] tw-px-[16px] tw-bg-transparent placeholder:tw-text-white ${additionalParentClassName}`}>
       {/* Input field */}
       <input
-        ref={inputRef}
+        ref={(inputElement) => {
+          inputRef.current = inputElement; // Assign local ref
+          if (typeof ref === "function") ref(inputElement);
+          else if (ref) ref.current = inputElement; // Assign parent ref
+        }}
         type="text"
         onKeyUp={handleSearch}
         placeholder={placeholder}
@@ -34,7 +38,7 @@ const SearchInput = ({ placeholder = "", onSearch, hasSearchButton = true, disab
       }
     </div>
   );
-};
+});
 
 // PropTypes
 SearchInput.propTypes = {

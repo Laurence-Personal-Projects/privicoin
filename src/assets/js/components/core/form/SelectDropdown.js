@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import PropTypes from "prop-types";
 
 const SelectDropdown = ({ 
@@ -13,9 +13,11 @@ const SelectDropdown = ({
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selected, setSelected] = useState(selectedOption);
+  const dropdownRef = useRef(null);
 
   const toggleDropdown = () => setIsOpen((prev) => !prev);
 
+  // when handleSelect is triggered get the selected option
   const handleSelect = (id) => {
     const selectedObj = options.find(opt => opt.id === id);
     setSelected(id);
@@ -27,8 +29,22 @@ const SelectDropdown = ({
     }
   };
 
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setIsOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
   return (
-    <div className={`tw-flex tw-flex-col tw-relative ${additionalParentClass} `}>
+    <div ref={dropdownRef} className={`tw-flex tw-flex-col tw-relative ${additionalParentClass}`}>
       {/* Dropdown Button */}
       <button
         type="button"

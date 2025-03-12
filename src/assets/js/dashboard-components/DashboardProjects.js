@@ -69,7 +69,7 @@ const DashboardProjects = () => {
           placeholder="Select a sort"
           onSelect={handleSortSelect}
           options={selectOptions} 
-          additionalClass="tw-min-w-[170px]" 
+          additionalClass="tw-min-w-[170px] tw-h-[48px]" 
         />
         {/* Attach ref to SearchInput */}
         <SearchInput ref={filterData.current.search} placeholder="Search Project" onSearch={handleSearch} />

@@ -48,7 +48,7 @@ const Dashboard = () => {
       </div>
 
       {/* Main Content */}
-      <div className="tw-flex-1 tw-px-[16px] tw-py-[24px] xl:tw-px-[24px] xl:tw-py-[24px]">
+      <div className="tw-flex-1 tw-px-[16px] tw-py-[24px] xl:tw-px-[24px] xl:tw-py-[24px] tw-overflow-x-hidden">
         <Routes>
           {/* Dashboard Content - Main Contents */}
           <Route index element={<DashboardContent />} />

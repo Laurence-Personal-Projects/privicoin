@@ -3,7 +3,7 @@ import Button from "@/assets/js/components/Button";
 
 const DashboardMidSection = () => {
   return (
-    <div className="tw-w-full">
+    <div className="tw-w-full animate__animated is_animate" data-animation="animate__fadeInUp">
       <BoxCard className="dashboard-box-card tw-px-[20px] tw-py-[24px] tw-text-left">
         <div className="tw-flex tw-flex-wrap tw-gap-[12px] md:tw-gap-[18px] tw-items-center tw-mb-[40px]">
           <div className="tw-rounded-full tw-w-[39px] tw-h-[39px] tw-bg-gray-200"></div>

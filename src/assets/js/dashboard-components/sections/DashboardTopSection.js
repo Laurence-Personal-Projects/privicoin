@@ -4,7 +4,7 @@ const DashboardTopSection = () => {
   return (
     <div className="tw-w-full tw-flex tw-flex-wrap tw-items-end tw-justify-between tw-gap-[40px]">
       {/*Total Value*/}
-      <div className="tw-w-full xl:tw-w-[32%]">
+      <div className="tw-w-full xl:tw-w-[32%] animate__animated is_animate" data-animation="animate__fadeInLeft">
         <BoxCard className="dashboard-box-card db-total-card tw-px-[20px] tw-py-[24px] tw-text-left">
           <div className="tw-flex tw-flex-wrap tw-gap-[12px] md:tw-gap-[18px] tw-items-center tw-mb-[40px]">
             <div className="tw-rounded-full tw-w-[39px] tw-h-[39px] tw-bg-gray-200"></div>
@@ -17,7 +17,7 @@ const DashboardTopSection = () => {
         </BoxCard>
       </div>
       {/*Reward Stats*/}
-      <div className="tw-w-full xl:tw-w-[63%]">
+      <div className="tw-w-full xl:tw-w-[63%] animate__animated is_animate" data-animation="animate__fadeInRight">
           <div className="tw-flex tw-flex-wrap tw-gap-[12px] md:tw-gap-[18px] tw-items-center tw-mb-[40px]">
             <div className="tw-rounded-full tw-w-[39px] tw-h-[39px] tw-bg-gray-200"></div>
             <h4 className="tw-text-[18px] md:tw-text-[24px] tw-text-[#8737A9]">Reward Stats</h4>

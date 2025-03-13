@@ -34,6 +34,15 @@ const DashboardProjects = () => {
     { id: "sortVotes", name: "Sort by My Votes" },
   ];
 
+  // headers - for DataTable
+  const [headers, setHeaders] = useState([
+    { classes: 'tw-text-left', text: 'Project', value: 'Project', sortable: true },
+    { classes: 'tw-text-left', text: 'APR', value: 'APR', sortable: true },
+    { classes: 'tw-text-left', text: 'Total Votes', value: 'TotalVotes', sortable: true },
+    { classes: 'tw-text-left', text: 'Rewards', value: 'Rewards', sortable: true },
+    { classes: 'tw-text-left', text: 'My Vote', value: 'MyVote', sortable: true },
+  ]);
+
   /*** Function Methods ***/
 
   // Function - handleSearch - handle searching
@@ -112,7 +121,9 @@ const DashboardProjects = () => {
           description: item.description ?? "Automated market maker (AMM) for stable asset swaps with concentrated liquidity positions",
           apr: formatterNumber(item.atl_change_percentage) ?? 0,
           rewards: item.current_price ? item.current_price.toLocaleString() : "0",
-          myVote: formatterNumber(item.ath) ?? 0,
+          my_vote: formatterNumber(item.price_change_percentage_24h) + '%' ?? 0 + '%',
+          my_percentage: formatterNumber(item.ath_change_percentage) + '%' ?? 0 + '%',
+          available_votes: formatterNumber(item.market_cap_rank) + '%' ?? 0 + '%',
         }));
 
         setDataItems(formattedData); // Update state with formatted data
@@ -184,7 +195,7 @@ const DashboardProjects = () => {
             onTabChange={resetAndRefreshData}
           >
             <DataCards id="dataCard" dataItems={dataItems} loading={loading} />
-            <DataTable id="dataTable" />
+            <DataTable id="dataTable" dataItems={dataItems} loading={loading} headers={headers} />
           </TabSwitcher>
         </div>
     </div>

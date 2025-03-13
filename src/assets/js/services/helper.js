@@ -1,5 +1,42 @@
 import axios from 'axios';
-import { get } from 'lodash';
+import { get, debounce } from 'lodash';
+
+export const debouncer = (cb, delay = 500) => {
+  return debounce((...args) => cb(...args), delay);
+};
+
+// format numbers
+export const formatterNumber = (num) => {
+  if (!num) return "0"; // Handle null/undefined
+
+  // Format based on the number size
+  if (num >= 1_000_000_000) {
+    // Billions (B)
+    let formatted = (num / 1_000_000_000).toLocaleString(undefined, {
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
+    });
+
+    return formatted.endsWith(".00") ? `${formatted.slice(0, -2)}B` : `${formatted}B`;
+  } else if (num >= 1_000_000) {
+    // Millions (M)
+    let formatted = (num / 1_000_000).toLocaleString(undefined, {
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
+    });
+
+    return formatted.endsWith(".00") ? `${formatted.slice(0, -3)}M` : `${formatted}M`;
+  }
+
+  // Regular formatting (no M or B)
+  let formatted = num.toLocaleString(undefined, {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  });
+
+  // If whole number, remove ".00"
+  return formatted.endsWith(".00") ? formatted.slice(0, -3) : formatted;
+};
 
 export async function handleRequest(axiosOptions) {
     let response = null;

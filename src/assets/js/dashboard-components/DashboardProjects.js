@@ -1,6 +1,7 @@
-import { useRef, useState, useEffect } from "react";
+import { useRef, useState, useEffect, useCallback } from "react";
 import SearchInput from "@/assets/js/components/core/form/SearchInput";
 import SelectDropdown from "@/assets/js/components/core/form/SelectDropdown";
+import { debouncer, formatterNumber } from '@/assets/js/services/helper.js';
 
 //core components
 import TabSwitcher from "@/assets/js/components/core/tabs/TabSwitcher";
@@ -39,6 +40,11 @@ const DashboardProjects = () => {
   const handleSearch = (searchValue) => {
     if (filterData.current.search.current) {
       filterData.current.search.current.value = searchValue; // the the searchValue into the search ref
+
+      debouncer(() => {
+        fetchData();  // re-fetch api data when filter changed
+      }, 600)(); // adjust delay as needed
+
       console.log("Data search is:", filterData.current.search.current.value);
     }
   };
@@ -46,6 +52,11 @@ const DashboardProjects = () => {
   // Function - HandleSortSelect - selection of dropdown option
   const handleSortSelect = (selectedOption) => {
     filterData.current.sortOptions.data = selectedOption; // Store selected option in ref
+
+    debouncer(() => {
+      fetchData();  // re-fetch api data when filter changed
+    }, 600)(); // adjust delay as needed
+
     console.log("Data:", filterData.current.sortOptions.data);
   };
 
@@ -58,6 +69,8 @@ const DashboardProjects = () => {
     // clear the sortOptions and force re-render when key is incremented
     filterData.current.sortOptions.data = null;
     filterData.current.sortOptions.key += 1;
+
+    fetchData();  // re-fetch api data when filter changed
     
     // Force React to re-render
     forceRenderState(prev => prev + 1);
@@ -75,25 +88,16 @@ const DashboardProjects = () => {
   // State to hold fetched data
   const [dataItems, setDataItems] = useState([]);
 
-  //formatter function for large Numbers
-  const formatterNumber = (num) => {
-    if (Number.isInteger(num)) {
-      return num.toLocaleString(); // if whole number dont include 2 decimal places
-    }
-    return (num ?? 0).toLocaleString(undefined, {
-      minimumFractionDigits: 2,
-      maximumFractionDigits: 2,
-    });
-  };
-
   // Function - Fetch data using Axios
 
   const [loading, setLoading] = useState(false);
 
-  const fetchData = async () => {
+  const fetchData = useCallback(async () => {
     try {
       setLoading(true);
-      const [response, errorMessage] = await fetchProjects();
+
+      let params = getFilterParams();
+      const [response, errorMessage] = await fetchProjects(params);
       
       if (response && response.data) {
         setLoading(false);
@@ -103,7 +107,7 @@ const DashboardProjects = () => {
         const formattedData = apiData.map((item) => ({
           name: item.name,
           rank: item.market_cap_rank ?? 0,
-          totalVotes: item.market_cap ? `${formatterNumber(item.market_cap)}M` : "0M",
+          totalVotes: item.market_cap ? formatterNumber(item.market_cap) : "0",
           votePercentage: item.atl ?? 0,
           description: item.description ?? "Automated market maker (AMM) for stable asset swaps with concentrated liquidity positions",
           apr: formatterNumber(item.atl_change_percentage) ?? 0,
@@ -122,17 +126,26 @@ const DashboardProjects = () => {
     } catch (error) {
       console.error("Error fetching data:", error);
     }
+  }, []);
+
+  // structure params to be sent in api
+  const getFilterParams = () => {
+    return {
+      search: filterData.current.search.current.value ?? null,
+      sort_data_card: filterData.current.sortOptions.data,
+    };
   };
 
   // refresh data and clear applied filters
   const resetAndRefreshData = () => {
     clearFilters();
-    fetchData();
+    debouncer(() => {
+      fetchData();
+    }, 600)(); // adjust delay as needed
   };
 
   useEffect(() => {
-    fetchData(); // Fetch data on component mount
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    fetchData();  // Fetch data on component mount
   }, []);
   
   return (

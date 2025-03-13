@@ -97,6 +97,15 @@ const DataCards = ({ dataItems = [], initialCount = 6, loading = false }) => {
 
       </div>
 
+      {/* Not found State */}
+      { (!loading && dataItems.length === 0) && (
+        <div className="tw-rounded-[26px] tw-border tw-px-[24px] tw-py-[30px] tw-border-[#4e4e4e] tw-border-solid tw-flex tw-justify-center tw-items-center tw-flex-wrap tw-bg-[#141414] tw-flex-col">
+          <h4 className="tw-text-[24px] tw-mb-[16px]">No Data Found...</h4>
+          <p className="tw-text-[#8E8E8E]">Try adjusting the filter or search.</p>
+        </div>
+      )}
+
+
       {/* Load More Button */}
       {visibleCount < dataItems.length && (
         <div className="tw-flex tw-justify-center tw-w-full tw-mt-6">

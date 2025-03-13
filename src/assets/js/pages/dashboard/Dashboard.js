@@ -40,7 +40,7 @@ const Dashboard = () => {
         <DashboardSideBar />
 
         {/* Dashboard Sidebar */}
-        <div className="tw-flex tw-justify-end tw-px-[16px] tw-pt-4 dashboard-mobile-menu">
+        <div className="tw-flex tw-sticky tw-top-[32px] tw-justify-end tw-px-[16px] tw-pt-4 dashboard-mobile-menu">
           <div className="tw-cursor-pointer" onClick={toggleSidebar}>
             <i className={`tw-text-[18px] ${isSidebarActive ? "fa-solid fa-xmark" : "fa-solid fa-bars"}`}></i>
           </div>

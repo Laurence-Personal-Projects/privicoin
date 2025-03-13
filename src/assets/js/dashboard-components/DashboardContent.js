@@ -10,7 +10,7 @@ const DashboardContent = () => {
     return (
       <div className="tw-w-full">
         <div className="tw-flex tw-justify-end tw-flex-wrap tw-w-full tw-mb-[40px] animate__animated is_animate" data-animation="animate__fadeInDown">
-          <Button title="Connect Wallet" className="dashboard-btn tw-max-w-full tw-w-[170px]"/>
+          <Button title="Connect Wallet" isAnchor={false} className="dashboard-btn tw-max-w-full tw-w-[170px]"/>
         </div>
 
         <div className="tw-flex tw-flex-wrap tw-flex-col tw-gap-[40px]">

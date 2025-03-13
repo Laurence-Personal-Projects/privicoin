@@ -31,6 +31,8 @@ img {vertical-align:top;image-rendering:-webkit-optimized-contrast;}
   .arrow-icon {position:absolute;right:24px;top:50%;transform:translateY(-50%);}
 }
 
+.loading-bg {animation-duration: 1.5s;animation-fill-mode: forwards;animation-iteration-count: infinite;animation-name: placeHolderShimmer;animation-timing-function: linear;background: #e4e4e4;background: linear-gradient(90deg,#161616 8%,#141414 25%,#171717 53%);background-size: 800px 104px;position: relative;border-radius: 32px;}
+
 .App {text-align: center;}
 .App-logo {height: 40vmin;pointer-events: none;}
 .App-header {background-color: #282c34;min-height: 100vh;display: flex;flex-direction: column;align-items: center;justify-content: center;font-size: calc(10px + 2vmin);color: white;}
@@ -46,5 +48,14 @@ img {vertical-align:top;image-rendering:-webkit-optimized-contrast;}
   }
   to {
     transform: rotate(360deg);
+  }
+}
+
+@keyframes placeHolderShimmer {
+  0% {
+    background-position: -468px 0;
+  }
+  100% {
+    background-position: 468px 0;
   }
 }

@@ -6,7 +6,7 @@ import BoxCard from "@/assets/js/components/BoxCard";
 import SearchInput from "@/assets/js/components/core/form/SearchInput";
 import Button from "@/assets/js/components/Button";
 
-const DataCards = ({ dataItems = [], initialCount = 6 }) => {
+const DataCards = ({ dataItems = [], initialCount = 6, loading = false }) => {
   const [visibleCount, setVisibleCount] = useState(initialCount); // Show items initially based on initialCount value
 
   const loadMore = () => {
@@ -85,21 +85,27 @@ const DataCards = ({ dataItems = [], initialCount = 6 }) => {
 
             <div className="tw-flex tw-w-full tw-flex-col md:tw-flex-row tw-items-end tw-justify-between tw-gap-[16px] tw-mt-[30px]">
               <SearchInput placeholder="Enter Vote %" hasSearchButton={false} additionalClassName="tw-w-full tw-max-w-full" additionalParentClassName="tw-w-full md:tw-w-[70%]" />
-              <Button title="Max" className="dashboard-btn tw-max-w-full tw-w-[30%] tw-uppercase"/>
+              <Button title="Max" isAnchor={false} className="dashboard-btn tw-max-w-full tw-w-[30%] tw-uppercase"/>
             </div>
           </BoxCard>
         ))}
+
+        {/*Loading State*/}
+        {loading && Array.from({ length: initialCount }, (_, index) => (
+          <div key={index} className="loading-bg tw-min-h-[300px] md:tw-min-h-[400px]"></div>
+        ))}
+
       </div>
 
       {/* Load More Button */}
       {visibleCount < dataItems.length && (
         <div className="tw-flex tw-justify-center tw-w-full tw-mt-6">
-          <button 
+          <Button 
             className="tw-bg-[#8737A9] tw-text-[14px] tw-text-white tw-py-2 tw-px-6 tw-rounded-full tw-transition tw-duration-300 hover:tw-bg-[#5F2482] tw-h-[40px]"
             onClick={loadMore}
-          >
-            Load More
-          </button>
+            isAnchor={false}
+            title="Load More"
+          />
         </div>
       )}
     </div>
@@ -109,6 +115,7 @@ const DataCards = ({ dataItems = [], initialCount = 6 }) => {
 // PropTypes
 DataCards.propTypes = {
   dataItems: PropTypes.array.isRequired,
+  loading: PropTypes.bool,
 };
 
 export default DataCards;

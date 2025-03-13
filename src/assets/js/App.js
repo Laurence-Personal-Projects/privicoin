@@ -2,8 +2,9 @@ import { BrowserRouter as Router, Routes, Route, useLocation } from "react-route
 import { useEffect } from "react";
 import LogoFavIcon from "@/assets/images/privicoin-icon-@2x.webp";
 
-// Components
+// Components - pages
 import HomePage from "@/assets/js/pages/HomePage";
+import NotFound from "@/assets/js/pages/NotFound";
 
 // Dashboard Components
 import Dashboard from "@/assets/js/pages/dashboard/Dashboard";
@@ -35,7 +36,13 @@ const AppSetup = () => {
 
       {/* Routes for Dashboard pages */}
       <Routes>
-        <Route path="/dashboard/*" element={<Dashboard />} />
+        {/* Hide Dashboard Routes in production - still in development */}
+        {process.env.NODE_ENV !== "production" && (
+          <Route path="/dashboard/*" element={<Dashboard />} />
+        )}
+
+        {/* 404 Catch-All Route */}
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </div>
   );

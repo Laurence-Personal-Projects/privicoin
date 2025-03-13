@@ -1,7 +1,9 @@
+import DashboardProjects from "@/assets/js/dashboard-components/DashboardProjects";
+
 const Projects = () => {
     return (
-      <div>
-        <h4>Projects</h4>
+      <div className="tw-w-full">
+        <DashboardProjects />
       </div>
     );
 };

@@ -1,8 +1,25 @@
 import { useState } from "react";
 import PropTypes from "prop-types";
+import "animate.css";
 
-const Tabs = ({ tabs, children, hasIcon = false, mainTitle = "", addtionalTopClass = "", addtionalContentClass = "" }) => {
+const TabSwitcher = ({ 
+  tabs, 
+  children, 
+  hasIcon = false, 
+  hideLabel = false,
+  mainTitle = "", 
+  addtionalTopClass = "", 
+  addtionalContentClass = "",
+  onTabChange = () => {},
+}) => {
   const [activeTab, setActiveTab] = useState(tabs[0]?.name || ""); // Default to the first tab
+
+  const handleTabClick = (tabName) => {
+    setActiveTab(tabName);
+    if (onTabChange) {
+      onTabChange(tabName); // 🔹 Call the callback when tab changes
+    }
+  };
 
   return (
     <div>
@@ -12,12 +29,12 @@ const Tabs = ({ tabs, children, hasIcon = false, mainTitle = "", addtionalTopCla
         {tabs.map((tab) => (
           <button
             key={tab.name}
-            onClick={() => setActiveTab(tab.name)}
-            className={`tw-rounded-[4px] tw-p-[12px] tw-transition tw-duration-300 hover:tw-bg-[#141414] ${
+            onClick={() => handleTabClick(tab.name)} // 🔹 Use handleTabClick instead
+            className={`tw-rounded-[4px] tw-p-[12px] tw-flex tw-items-center tw-gap-[8px] tw-transition tw-duration-300 hover:tw-bg-[#141414] ${
               activeTab === tab.name ? "tw-bg-[#141414] tw-text-white" : ""
             }`}
           >
-            {!hasIcon && tab.label}
+            {!hideLabel && tab.label}
             {hasIcon && <i className={tab.icon}></i>}
           </button>
         ))}
@@ -26,20 +43,27 @@ const Tabs = ({ tabs, children, hasIcon = false, mainTitle = "", addtionalTopCla
       {/* Dynamic Content Rendering */}
       <div className={`tw-w-full tw-mt-4 ${addtionalContentClass}`}>
         {children.map((child) =>
-          child.props.id === activeTab ? child : null
+          child.props.id === activeTab ? (
+            <div key={activeTab} className="animate__animated animate__fadeIn">
+              {child}
+            </div>
+          ) : null
         )}
       </div>
+
     </div>
   );
 };
 
 // PropTypes
-Tabs.propTypes = {
+TabSwitcher.propTypes = {
   tabs: PropTypes.array,
   hasIcon: PropTypes.bool,
+  hideLabel: PropTypes.bool,
   mainTitle: PropTypes.string,
   addtionalTopClass: PropTypes.string,
   addtionalContentClass: PropTypes.string,
+  onTabChange: PropTypes.func,
 };
 
-export default Tabs;
+export default TabSwitcher;

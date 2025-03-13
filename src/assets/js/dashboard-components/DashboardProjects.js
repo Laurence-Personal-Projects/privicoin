@@ -3,7 +3,7 @@ import SearchInput from "@/assets/js/components/core/form/SearchInput";
 import SelectDropdown from "@/assets/js/components/core/form/SelectDropdown";
 
 //core components
-import Tabs from "@/assets/js/components/core/tabs/Tabs";
+import TabSwitcher from "@/assets/js/components/core/tabs/TabSwitcher";
 import DataCards from "@/assets/js/components/core/cards/DataCards";
 import DataTable from "@/assets/js/components/core/table/DataTable";
 
@@ -87,11 +87,16 @@ const DashboardProjects = () => {
   };
 
   // Function - Fetch data using Axios
+
+  const [loading, setLoading] = useState(false);
+
   const fetchData = async () => {
     try {
+      setLoading(true);
       const [response, errorMessage] = await fetchProjects();
       
       if (response && response.data) {
+        setLoading(false);
         const apiData = response.data; // fetch response data
 
         // Map API data to match map data in the component
@@ -117,6 +122,12 @@ const DashboardProjects = () => {
     } catch (error) {
       console.error("Error fetching data:", error);
     }
+  };
+
+  // refresh data and clear applied filters
+  const resetAndRefreshData = () => {
+    clearFilters();
+    fetchData();
   };
 
   useEffect(() => {
@@ -146,7 +157,7 @@ const DashboardProjects = () => {
         </div>
 
         <div className="tw-w-full">
-          <Tabs
+          <TabSwitcher
             ref={activeTab}
             tabs={[
               { name: "dataCard", label: "Data Cards", icon: "fa-solid fa-grip" },
@@ -154,12 +165,14 @@ const DashboardProjects = () => {
             ]}
             mainTitle="Projects"
             hasIcon={true}
+            hideLabel={true}
             addtionalTopClass="tw-mt-[20px] xl:tw-mt-[-82px] tw-py-[3px]"
             addtionalContentClass="tw-mt-[60px]"
+            onTabChange={resetAndRefreshData}
           >
-            <DataCards id="dataCard" dataItems={dataItems} />
+            <DataCards id="dataCard" dataItems={dataItems} loading={loading} />
             <DataTable id="dataTable" />
-          </Tabs>
+          </TabSwitcher>
         </div>
     </div>
   );

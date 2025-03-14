@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 
 //components
@@ -6,22 +6,51 @@ import BoxCard from "@/assets/js/components/BoxCard";
 import SearchInput from "@/assets/js/components/core/form/SearchInput";
 import Button from "@/assets/js/components/Button";
 
-const DataTable = ({ dataItems = [], headers = [], initialCount = 6, gridCounter = 5, loading = false }) => {
+const DataTable = ({ dataItems = [], headers = [], initialCount = 6, gridCounter = 5, loading = false, onSort, resetSort = null }) => {
   const [visibleCount, setVisibleCount] = useState(initialCount); // Show items initially based on initialCount value
+  const [sortState, setSortState] = useState({});
 
   const loadMore = () => {
     setVisibleCount((prev) => prev + initialCount); // Load more on click
   };
 
+  const handleSort = (header) => {
+    if (!header.sortable) return;
+    
+    setSortState((prevState) => {
+      const newSortState = prevState?.column === header.value
+        ? { column: header.value, order: prevState.order === "asc" ? "desc" : "asc" }
+        : { column: header.value, order: "asc" };
+      onSort(header.value, newSortState.order);
+      return newSortState;
+    });
+  };
+
+  // determine sort icon based on column direction
+  const getSortIcon = (header) => {
+    if (!header.sortable) return null;
+    if (!sortState || sortState.column !== header.value) return <i className="fa-solid fa-sort"></i>;
+    return sortState.order === "asc" ? <i className="fa-solid fa-sort-up"></i> : <i className="fa-solid fa-sort-down"></i>;
+  };
+
+  useEffect(() => {
+    setSortState(null);
+  }, [resetSort]);
+
   return (
     <div className="tw-w-full">
       <div className="tw-w-full tw-overflow-x-auto tw-py-4">
         {/* Table Headers */}
-        <div className={`tw-grid tw-w-full tw-min-w-[1200px] xl:tw-min-w-0  tw-items-center tw-gap-[14px] tw-mb-[24px] ${gridCounter ? `tw-grid-cols-[repeat(${gridCounter - 1}, minmax(0, 1fr))] tw-grid-cols-[1fr_1fr_1fr_1fr_2.1fr]` : "tw-grid-cols-1"}`}>
+        <div className={`tw-grid tw-w-full tw-min-w-[1200px] xl:tw-min-w-0 tw-items-center tw-gap-[14px] tw-mb-[24px] ${gridCounter ? `tw-grid-cols-[repeat(${gridCounter - 1}, minmax(0, 1fr))] tw-grid-cols-[1fr_1fr_1fr_1fr_2.1fr]` : "tw-grid-cols-1"}`}>          
           {headers.map((header, index) => (
-          <div key={index} className={`tw-text-[16px] tw-text-[#8E8E8E] ${header.sortable ? 'tw-cursor-pointer' : ''} tw-font-bold ${header.classes}`}>
-            {header.text}
-          </div>
+            <div key={index} className="tw-text-[16px] tw-font-bold">
+              <div 
+                className={`tw-text-[#8E8E8E] tw-flex tw-flex-wrap tw-gap-[8px] ${header.sortable ? 'tw-cursor-pointer' : ''} ${header.classes}`}
+                onClick={() => handleSort(header)}
+              >
+                {header.text} {header.sortable && getSortIcon(header)}
+              </div>
+            </div>
           ))}
         </div>
         {/* Table Headers */}
@@ -64,7 +93,7 @@ const DataTable = ({ dataItems = [], headers = [], initialCount = 6, gridCounter
                 </div>
 
                 {/*Column */}
-                <div className="tw-w-full tw-flex tw-items-end tw-justify-between tw-gap-[16px]">
+                <div className="tw-w-full tw-flex tw-items-center md:tw-items-end tw-justify-between tw-gap-[16px]">
                   <div className="tw-flex tw-flex-col tw-gap-[4px]">
                     <span className="tw-text-[16px]">{item.my_vote}</span>
                     <span className="tw-text-[12px] tw-text-[#8E8E8E]">{item.my_percentage}</span>
@@ -87,7 +116,7 @@ const DataTable = ({ dataItems = [], headers = [], initialCount = 6, gridCounter
 
           {/*Loading State*/}
           {loading && Array.from({ length: initialCount }, (_, index) => (
-            <div key={index} className="loading-bg tw-min-h-[140px] md:tw-min-h-[400px]"></div>
+            <div key={index} className="loading-bg tw-min-h-[140px] md:tw-min-h-[150px]"></div>
           ))}
         </div>
         {/*Table Data*/}
@@ -124,6 +153,8 @@ DataTable.propTypes = {
   initialCount: PropTypes.number,
   gridCounter: PropTypes.number,
   headers: PropTypes.array,
+  onSort: PropTypes.func,
+  resetSort: PropTypes.string,
 };
 
 export default DataTable;

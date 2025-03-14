@@ -7,7 +7,7 @@ const HomeBanner = () => {
       <div className="banner-main">
         <div className="bnr-top-bg"></div>
         <div className="tw-flex tw-flex-1 tw-absolute tw-left-0 tw-h-full tw-z-[2]">
-            <BannerBlurWindow addClass="tw-w-[35px] sm:tw-w-[60px] md:tw-w-[90px] lg:tw-w-[112px]" desktopCounter={9} xLaptopCounter={7} laptopCounter={6} mobileCounter={6} animationClass="animate__fadeInLeft" animationDelay={0.2} />
+            <BannerBlurWindow addClass="tw-w-[35px] sm:tw-w-[60px] md:tw-w-[90px] lg:tw-w-[112px]" desktopCounter={8} xLaptopCounter={7} laptopCounter={6} mobileCounter={6} animationClass="animate__fadeInLeft" animationDelay={0.2} />
         </div>
         <div className="wrapper">
             <BannerInfo />

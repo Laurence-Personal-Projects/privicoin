@@ -1,50 +1,40 @@
+import { useState } from "react";
 import { Routes, Route } from "react-router-dom";
-import { useState, useEffect } from "react";
 
 // Dashboard Components
 import DashboardSideBar from "@/assets/js/dashboard-components/DashboardSideBar";
 import DashboardContent from "@/assets/js/dashboard-components/DashboardContent";
+import DashboardLinks from "@/assets/js/dashboard-components/DashboardLinks";
 
 // Dashboard Pages
 import Projects from "@/assets/js/pages/dashboard/Projects";
+import DashboardHeader from "@/assets/js/dashboard-components/DashboardHeader";
+
+// Dialog
+import PopupDialog from "@/assets/js/components/core/dialog/PopupDialog";
 
 const Dashboard = () => {
-  const [isSidebarActive, setIsSidebarActive] = useState(false);
 
-  // Function for toggling the active state of the sidebar
-  const toggleSidebar = () => {
-    setIsSidebarActive(!isSidebarActive);
-  };
-
-  // Effect to reset sidebar when viewport width is 1025px or greater
-  useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth >= 1025) {
-        setIsSidebarActive(false); // Remove .active-main-sidebar
-      }
-    };
-
-    // Attach event listener
-    window.addEventListener("resize", handleResize);
-
-    // Cleanup function to remove event listener
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div className="tw-flex tw-min-h-screen tw-p-[24px]">
-      <div className={`tw-flex tw-items-start main-sidebar ${isSidebarActive ? "active-main-sidebar" : ""}`}>
+    <div className="tw-flex tw-flex-wrap tw-min-h-screen tw-p-[24px]">
+      
+      {/*Dashboard Header*/}
+      <DashboardHeader additionalClass="db-header" onClick={() => setIsOpen(true)} />
+
+      {/* Mobile Menu - Popup Dialog */}
+      {isOpen && (
+        <PopupDialog isSidebar={true} sideBarDirection="right" onClose={() => setIsOpen(false)}>
+          {/* Dashboard Links */}
+          <DashboardLinks />
+        </PopupDialog>
+      )}
+
+      <div className={`tw-flex tw-items-start is-desktop-only main-sidebar`}>
         {/* Dashboard Sidebar */}
         <DashboardSideBar />
 
-        {/* Dashboard Sidebar */}
-        <div className="tw-flex tw-sticky tw-top-[32px] tw-justify-end tw-px-[16px] tw-pt-4 dashboard-mobile-menu">
-          <div className="tw-cursor-pointer" onClick={toggleSidebar}>
-            <i className={`tw-text-[18px] ${isSidebarActive ? "fa-solid fa-xmark" : "fa-solid fa-bars"}`}></i>
-          </div>
-        </div>
       </div>
 
       {/* Main Content */}

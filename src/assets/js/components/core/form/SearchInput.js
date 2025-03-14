@@ -14,7 +14,7 @@ const SearchInput = forwardRef(({ placeholder = "", onSearch, hasSearchButton = 
   };
 
   return (
-    <div className={`${disabled ? "tw-cursor-not-allowed" : ""} tw-rounded-full tw-flex tw-items-center tw-border tw-border-solid tw-border-[#4D4D4D] tw-py-[7px] tw-px-[16px] tw-bg-transparent placeholder:tw-text-white ${additionalParentClassName}`}>
+    <div className={`${disabled ? "tw-cursor-not-allowed" : ""} tw-max-w-full tw-rounded-full tw-flex tw-items-center tw-border tw-border-solid tw-border-[#4D4D4D] tw-py-[7px] tw-px-[16px] tw-bg-transparent placeholder:tw-text-white ${additionalParentClassName}`}>
       {/* Input field */}
       <input
         ref={(inputElement) => {

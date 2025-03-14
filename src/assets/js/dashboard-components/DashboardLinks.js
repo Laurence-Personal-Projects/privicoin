@@ -9,7 +9,7 @@ import IconDocumentation from "@/assets/images/dashboard/icon-documentation.webp
 
 const DashboardLinks = () => {
   return (
-    <div className="tw-flex tw-flex-col tw-mt-[40px] md:tw-mt-[120px] tw-w-full ">
+    <div className="tw-flex tw-flex-col tw-mt-[20px] md:tw-mt-[40px] md:tw-mt-[120px] tw-w-full ">
       {/* Dashboard Links */}
       <ul className="dashboard-nav-links">
           <li>

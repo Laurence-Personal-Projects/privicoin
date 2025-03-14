@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { useEffect } from "react";
 import LogoFavIcon from "@/assets/images/privicoin-icon-@2x.webp";
 
@@ -10,8 +10,6 @@ import NotFound from "@/assets/js/pages/NotFound";
 import Dashboard from "@/assets/js/pages/dashboard/Dashboard";
 
 const AppSetup = () => {
-  const location = useLocation(); // Get the current URL path
-
   useEffect(() => {
     document.title = "Privicoin";
 
@@ -31,11 +29,11 @@ const AppSetup = () => {
 
   return (
     <div className="App">
-      {/* Render HomePage only on "/" */}
-      {location.pathname === "/" && <HomePage />}
 
       {/* Routes for Dashboard pages */}
       <Routes>
+        <Route path="/" element={<HomePage />} />  {/* Explicit Home Route | Render HomePage only on "/" */}
+
         {/* Hide Dashboard Routes in production - still in development */}
         {process.env.NODE_ENV !== "production" && (
           <Route path="/dashboard/*" element={<Dashboard />} />
@@ -45,6 +43,7 @@ const AppSetup = () => {
         <Route path="*" element={<NotFound />} />
       </Routes>
     </div>
+    
   );
 };
 

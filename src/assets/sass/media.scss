@@ -11,6 +11,9 @@
 }
 
 @media only screen and (max-width:1024px) {
+  .is-desktop-only {display:none !important;}
+  .db-header {display:flex !important;}
+
   /*Header*/
   .header-logo {width:120px !important;}
   /*Banner*/

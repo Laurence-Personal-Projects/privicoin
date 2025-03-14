@@ -13,17 +13,31 @@ import { fetchProjects } from "@/assets/js/services/FetchProjectsServices";
 
 const DashboardProjects = () => {
 
-   // Ref for filter data
-   const filterData = useRef({
+  // Ref for filter data
+  const filterData = useRef({
     search: useRef(null),
     sortOptions: {
       key: 0,
       data: null,
     },
+    sort: null,
   });
 
-  // State to trigger re-render when key changes
-  const [, forceRenderState] = useState(0);
+  // Usestates
+  const [resetSort, setResetSort] = useState(false); //reset sorting
+  const [, forceRenderState] = useState(0); // State to trigger re-render when key changes
+  const [dataItems, setDataItems] = useState([]); // State to hold fetched data
+  const [loading, setLoading] = useState(false); // loading state
+
+  // headers - for DataTable
+  // eslint-disable-next-line no-unused-vars
+  const [headers, setHeaders] = useState([
+    { classes: 'tw-text-left', text: 'Project', value: 'project', sortable: true },
+    { classes: 'tw-text-left', text: 'APR', value: 'apr', sortable: true },
+    { classes: 'tw-text-left', text: 'Total Votes', value: 'total_votes', sortable: true },
+    { classes: 'tw-text-left', text: 'Rewards', value: 'rewards', sortable: true },
+    { classes: 'tw-text-left', text: 'My Vote', value: 'my_vote' },
+  ]);
 
   // Static options
   const selectOptions = [
@@ -35,6 +49,13 @@ const DashboardProjects = () => {
   ];
 
   /*** Function Methods ***/
+
+  // Function - handleSort - for DataTable
+  const handleSort = (column, direction) => {
+    filterData.current.sort = { [column]: direction };
+    console.log("sort:", filterData.current.sort);
+    fetchData();
+  };
 
   // Function - handleSearch - handle searching
   const handleSearch = (searchValue) => {
@@ -70,6 +91,10 @@ const DashboardProjects = () => {
     filterData.current.sortOptions.data = null;
     filterData.current.sortOptions.key += 1;
 
+    // Clear sort filter
+    filterData.current.sort = null;
+    setResetSort(prev => !prev); // Toggle state to trigger reset
+
     fetchData();  // re-fetch api data when filter changed
     
     // Force React to re-render
@@ -84,14 +109,8 @@ const DashboardProjects = () => {
   /*Tabs - Config*/
   const activeTab = useRef(null);
   /*End>> Tabs - Config*/
-
-  // State to hold fetched data
-  const [dataItems, setDataItems] = useState([]);
-
+  
   // Function - Fetch data using Axios
-
-  const [loading, setLoading] = useState(false);
-
   const fetchData = useCallback(async () => {
     try {
       setLoading(true);
@@ -112,7 +131,9 @@ const DashboardProjects = () => {
           description: item.description ?? "Automated market maker (AMM) for stable asset swaps with concentrated liquidity positions",
           apr: formatterNumber(item.atl_change_percentage) ?? 0,
           rewards: item.current_price ? item.current_price.toLocaleString() : "0",
-          myVote: formatterNumber(item.ath) ?? 0,
+          my_vote: formatterNumber(item.price_change_percentage_24h) + '%' ?? 0 + '%',
+          my_percentage: formatterNumber(item.ath_change_percentage) + '%' ?? 0 + '%',
+          available_votes: formatterNumber(item.market_cap_rank) + '%' ?? 0 + '%',
         }));
 
         setDataItems(formattedData); // Update state with formatted data
@@ -133,25 +154,24 @@ const DashboardProjects = () => {
     return {
       search: filterData.current.search.current.value ?? null,
       sort_data_card: filterData.current.sortOptions.data,
+      sort: filterData.current.sort,
     };
   };
 
   // refresh data and clear applied filters
   const resetAndRefreshData = () => {
     clearFilters();
-    debouncer(() => {
-      fetchData();
-    }, 600)(); // adjust delay as needed
   };
 
   useEffect(() => {
     fetchData();  // Fetch data on component mount
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   
   return (
     <div className="tw-w-full">
         <div className="tw-flex tw-gap-[15px] tw-justify-end tw-flex-col">
-          <div className="tw-flex tw-gap-[15px] tw-items-center tw-justify-end">
+          <div className="tw-flex tw-gap-[15px] tw-flex-wrap tw-items-center tw-justify-end">
             {/* Use filterData.current.sortOptions.key as key */}
             <SelectDropdown 
               key={filterData.current.sortOptions.key}
@@ -184,7 +204,15 @@ const DashboardProjects = () => {
             onTabChange={resetAndRefreshData}
           >
             <DataCards id="dataCard" dataItems={dataItems} loading={loading} />
-            <DataTable id="dataTable" />
+            <DataTable 
+              id="dataTable" 
+              dataItems={dataItems} 
+              loading={loading} 
+              headers={headers} 
+              onSort={handleSort} 
+              resetSort={resetSort}
+            />
+
           </TabSwitcher>
         </div>
     </div>

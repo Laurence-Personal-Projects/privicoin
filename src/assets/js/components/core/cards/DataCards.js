@@ -77,8 +77,17 @@ const DataCards = ({ dataItems = [], initialCount = 6, loading = false }) => {
                 <div className="tw-flex tw-justify-between tw-flex-wrap tw-gap-[16px]">
                   <h6 className="tw-text-[16px]">My Vote</h6>
                   <div className="tw-flex tw-flex-col tw-gap-[12px]">
-                    <span className="tw-text-[16px]">{item.myVote}</span>
+                    <span className="tw-text-[16px]">{item.my_vote}</span>
                   </div>
+                </div>
+                
+                {/* Separator */}
+                <div className="tw-w-full tw-h-[1px] tw-bg-[#424242]"></div>
+                {/* Separator */}
+
+                <div className="tw-flex tw-flex-col tw-text-right tw-justify-end tw-gap-[12px]">
+                  <span className="tw-text-[#8E8E8E]">{item.my_percentage}</span>
+                  <span className="tw-text-white">Available votes: {item.available_votes}</span>
                 </div>
               </div>
             </div>

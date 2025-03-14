@@ -1,3 +1,7 @@
+@use '../modules/variables' as var;
 @use '_dashboard-sidebar.scss';
 
 .db-total-card {position: relative;background: url("/src/assets/images/dashboard/dashboard-bg-cover-box.webp") no-repeat right top / contain,  linear-gradient(0deg,#141414,#141414) !important;}
+
+.db-header {display:none !important;}
+.popup-card {background: linear-gradient(180deg, var.$darker_color 0%, var.$primary_color 100%);}

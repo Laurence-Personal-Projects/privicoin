@@ -34,7 +34,7 @@ const AppSetup = () => {
       <Routes>
         <Route path="/" element={<HomePage />} />  {/* Explicit Home Route | Render HomePage only on "/" */}
 
-        {/* Hide Dashboard Routes in production - still in development */}
+        {/* Hide Dashboard Routes in production - only show this when all the integration is completed */}
         {process.env.NODE_ENV !== "production" && (
           <Route path="/dashboard/*" element={<Dashboard />} />
         )}

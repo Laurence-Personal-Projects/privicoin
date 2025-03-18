@@ -11,8 +11,6 @@ import Dashboard from "@/assets/js/pages/dashboard/Dashboard";
 
 const AppSetup = () => {
   useEffect(() => {
-    document.title = "Privicoin";
-
     // Change favicon dynamically
     const favIcon = (iconURL) => {
       let link = document.querySelector("link[rel~='icon']");
@@ -25,6 +23,22 @@ const AppSetup = () => {
     };
 
     favIcon(LogoFavIcon);
+
+    // Meta title and description
+    document.title = "Privicoin | Decentralized Social Finance Network";
+
+    const metadesc =
+      "Join an exclusive DeFI community where we succeed together. PRIVI empowers members to make collective decisions to diversify risk and maximize returns.";
+
+    const metaDescription = document.querySelector('meta[name="description"]');
+    if (metaDescription) {
+      metaDescription.setAttribute("content", metadesc);
+    } else {
+      const meta = document.createElement("meta");
+      meta.name = "description";
+      meta.content = metadesc;
+      document.head.appendChild(meta);
+    }
   }, []);
 
   return (

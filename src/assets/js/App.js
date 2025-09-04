@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
 import { useEffect } from "react";
 import LogoFavIcon from "@/assets/images/privicoin-icon-@2x.webp";
 
@@ -41,6 +41,11 @@ const AppSetup = () => {
     }
   }, []);
 
+    // ✅ Check query param
+  const location = useLocation();
+  const params = new URLSearchParams(location.search);
+  const allowDashboard = process.env.NODE_ENV !== "production" || params.get("open") === "true";
+
   return (
     <div className="App">
 
@@ -49,7 +54,7 @@ const AppSetup = () => {
         <Route path="/" element={<HomePage />} />  {/* Explicit Home Route | Render HomePage only on "/" */}
 
         {/* Hide Dashboard Routes in production - still in development */}
-        {process.env.NODE_ENV !== "production" && (
+        {allowDashboard && (
           <Route path="/dashboard/*" element={<Dashboard />} />
         )}
 

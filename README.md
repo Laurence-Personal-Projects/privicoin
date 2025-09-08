@@ -5,6 +5,11 @@ This repository provides the source code, setup, and deployment steps.
 
 ---
 
+## Before Starting
+Make sure you have setup ssh in your machine to clone the repository.
+
+Please check the [guide here](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account).
+
 ## 🚀 Getting Started  
 
 Follow the steps below to set up and run the project locally or in production.  
